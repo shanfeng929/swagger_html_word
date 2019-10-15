@@ -32,4 +32,9 @@ public class Request {
      * 说明
      */
     private String remark;
+
+    /**
+     * 锁进
+     */
+    private Integer indent = 0;
 }

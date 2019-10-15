@@ -62,20 +62,25 @@
             </tr>
 
             <tr class="bg" align="center">
-                <td>参数名</td>
-                <td>数据类型</td>
-                <td>参数类型</td>
-                <td>是否必填</td>
-                <td>说明</td>
+                <th>参数名</th>
+                <th>数据类型</th>
+                <th>参数类型</th>
+                <th>是否必填</th>
+                <th>说明</th>
             </tr>
 
-            <tr align="center" th:each="request:${table.requestList}">
-                <td th:text="${request.name}"></td>
-                <td th:text="${request.type}"></td>
-                <td th:text="${request.paramType}"></td>
-                <td th:if="${request.require}" th:text="Y"></td>
-                <td th:if="${!request.require}" th:text="N"></td>
-                <td th:text="${request.remark}"></td>
+            <tr th:each="request:${table.requestList}">
+                <td>
+                    <span th:each="i : ${#numbers.sequence(0,request.indent)}">
+                        <span>&nbsp;&nbsp;</span>
+                    </span>
+                    <span th:text="${request.name}"></span>
+                </td>
+                <td align="center" th:text="${request.type}"></td>
+                <td align="center" th:text="${request.paramType}"></td>
+                <td align="center" th:if="${request.require}" th:text="Y"></td>
+                <td align="center" th:if="${!request.require}" th:text="N"></td>
+                <td align="center" th:text="${request.remark}"></td>
             </tr>
 
             <tr class="bg" align="center">

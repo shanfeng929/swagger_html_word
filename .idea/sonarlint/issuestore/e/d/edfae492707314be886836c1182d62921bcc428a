@@ -1,0 +1,6 @@
+
+dsquid:S1075"ARefactor your code to get this URI from a customizable parameter.(¢Á–èüÿÿÿÿ8ÓÈ°ûÛ-
+U
+squid:S106"9Replace this use of System.out or System.err by a logger.(‚š‰18éÃûÛ-
+ksquid:UselessImportCheck"@Remove this unused import 'org.apache.commons.codec.binary.Hex'.(šˆé°8ÍÎôûÛ-
+isquid:UselessImportCheck">Remove this unused import 'java.nio.charset.StandardCharsets'.(ï˜ŞÛ8•‰úûÛ-

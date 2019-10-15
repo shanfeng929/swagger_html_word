@@ -87,7 +87,6 @@ public class WordServiceImpl implements WordService {
                     List<LinkedHashMap> parameters = (ArrayList) content.get("parameters");
                     if (!CollectionUtils.isEmpty(parameters)) {
                         for (Map<String, Object> param : parameters) {
-
                             Object in = param.get("in");
                             if (in != null && "body".equals(in)) {
                                 Map<String, Object> schema = (Map) param.get("schema");
@@ -97,6 +96,17 @@ public class WordServiceImpl implements WordService {
                                 if (schema.get("type") != null && "array".equals(schema.get("type"))) {
                                     ref = ((Map) schema.get("items")).get("$ref");
                                 }
+
+                                //添加body的
+                                Request request = new Request();
+                                request.setName(param.get("name") == null ? "" : param.get("name").toString());
+                                request.setRequire(param.get("required") == null ? false : true);
+                                request.setRemark(originalRef == null ? "" : originalRef.toString());
+                                request.setType(in.toString());
+                                request.setParamType(in.toString());
+                                request.setIndent(1);
+                                requestList.add(request);
+
                                 if(originalRef != null){
                                     HashMap<String, Object> originalRefMap = definitions.get(originalRef.toString());
                                     for(Map.Entry<String,Object> entry : originalRefMap.entrySet()){
@@ -137,13 +147,14 @@ public class WordServiceImpl implements WordService {
 //                                                objectNode.put(key, str);
                                                     System.out.println();
                                                     //
-                                                    Request request = new Request();
-                                                    request.setName(key);
-                                                    request.setRequire(param.get("required") == null ? false : true);
-                                                    request.setRemark(desc);
-                                                    request.setType(pt);
-                                                    request.setParamType(pt);
-                                                    requestList.add(request);
+                                                    Request requestIn = new Request();
+                                                    requestIn.setName(key);
+                                                    requestIn.setRequire(param.get("required") == null ? false : true);
+                                                    requestIn.setRemark(desc);
+                                                    requestIn.setType(pt);
+                                                    requestIn.setParamType(pt);
+                                                    requestIn.setIndent(4);
+                                                    requestList.add(requestIn);
 
                                                 }
 
